@@ -1,60 +1,50 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <Login
+      color="red "
+      v-model="user.username"
+      name="Authorized"
+      icon="mdi-account"
+      :rounded="true"
+      :fill="true"
+      v-on:click="click"
+    />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <v-snackbar v-model="show" color="red" top>
+      <div class="d-flex justify-center">{{ isResult }}</div>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Login from "@/components/vue2-autrorized.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    Login,
   },
 
   data: () => ({
-    //
+    user: {
+      username: null,
+      password: null,
+    },
+    show: false,
+    isResult: "",
   }),
+
+  mounted() {
+    this.show;
+  },
+
+  methods: {
+    click() {
+      this.isResult = "Login Success";
+      this.show = true;
+      console.log("login success !!");
+    },
+  },
 };
 </script>
